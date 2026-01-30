@@ -128,6 +128,12 @@ const questions = [
 
 function display(){
     const container = document.querySelector("container")
+    for(let i = 0; i < questions.length; i++){
+      container.insertAdjacentHTML("afterbegin", 
+        `<div class="question">
+            <a>Category: ${questions[i].category}. ${questions[i].question}</a>
+        </div>`)
+    }
 }
 
 function buttonEvent(){
@@ -135,10 +141,3 @@ function buttonEvent(){
 }
 
 display()
-console.log(questions.length)
-/*
-container.insertAdjacentHTML("afterbegin", 
-        `<div class="question">
-            <a>Category: ${q.category}. ${q.question}</a>
-        </div>`)
-*/
