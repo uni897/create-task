@@ -139,6 +139,7 @@ function display(q){
         </div>`)
     }
 }
+display(questions)
 
 function buttonEvent(bts){
   bts.forEach(bt => {
@@ -166,10 +167,6 @@ function buttonEvent(bts){
   });
 }
 
-display(questions)
-
 const usedids = []
 const buttons = Array.from(document.querySelectorAll("button"))
 buttonEvent(buttons)
-
-
