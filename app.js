@@ -154,7 +154,7 @@ function buttonEvent(bts){
       if(used){
         return
       }
-      
+
       usedids.push(question)
 
       if(bt.textContent === answer){
@@ -168,8 +168,8 @@ function buttonEvent(bts){
 
 display(questions)
 
-const buttons = Array.from(document.querySelectorAll("button"))
 const usedids = []
+const buttons = Array.from(document.querySelectorAll("button"))
 buttonEvent(buttons)
 
 
