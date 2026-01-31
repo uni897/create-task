@@ -55,7 +55,7 @@ const questions = [
   },
   {
     question: "What is the boiling point of water at sea level (°C)?",
-    choices: ["90", "95", "100", "110"],
+    choices: ["90", "92", "98", "100"],
     correctAnswer: "100",
     category: "Science"
   },
@@ -120,24 +120,56 @@ const questions = [
   },
   {
     question: "What is the main ingredient in guacamole?",
-    choices: ["Tomato", "Avocado", "Onion", "Pepper"],
+    choices: ["Avocado", "Tomato", "Onion", "Pepper"],
     correctAnswer: "Avocado",
     category: "Food"
   }
 ];
 
-function display(){
-    const container = document.querySelector("container")
-    for(let i = 0; i < questions.length; i++){
-      container.insertAdjacentHTML("afterbegin", 
-        `<div class="question">
-            <a>Category: ${questions[i].category}. ${questions[i].question}</a>
+function display(q){
+    const container = document.querySelector(".container")
+    for(let i = 0; i < q.length; i++){
+      container.insertAdjacentHTML("beforeend", 
+        `<div id=${i} class="question">
+            <a>Category: ${q[i].category}. ${q[i].question}</a>
+            <button>${q[i].choices[0]}</button>
+            <button>${q[i].choices[1]}</button>
+            <button>${q[i].choices[2]}</button>
+            <button>${q[i].choices[3]}</button>
         </div>`)
     }
 }
 
-function buttonEvent(){
+function buttonEvent(bts){
+  bts.forEach(bt => {
+    bt.addEventListener("click", ()=>{
+      const question = bt.closest(".question").id
+      const answer = questions[question].correctAnswer
+      let used = false
+      usedids.forEach(id =>{
+        if(id === question){
+          used = true
+        }
+      })
+      if(used){
+        return
+      }
+      
+      usedids.push(question)
 
+      if(bt.textContent === answer){
+        bt.style.backgroundColor = "rgb(30, 223, 30)"
+      }else{
+        bt.style.backgroundColor = "red"
+      }
+    })
+  });
 }
 
-display()
+display(questions)
+
+const buttons = Array.from(document.querySelectorAll("button"))
+const usedids = []
+buttonEvent(buttons)
+
+
